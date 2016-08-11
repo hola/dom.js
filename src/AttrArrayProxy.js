@@ -12,7 +12,7 @@ function AttrArrayProxy(attributes) {
     var handler = O.create(AttrArrayProxy.handler);
     handler.element = attributes.element;
     handler.localprops = O.create(null);
-    return Proxy.create(handler, Array.prototype);
+    return new Proxy(Array.prototype, handler);
 }
 
 // This is the prototype object for the proxy handler object
