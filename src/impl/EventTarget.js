@@ -49,15 +49,12 @@ defineLazyProperty(impl, "EventTarget", function() {
                     for(var i = 0, n = list.length; i < n; i++) {
                         var l = list[i];
                         if (l.listener === listener && l.capture === capture) {
-                            if (list.length === 1)
-                                delete this._listeners[type];
-                            else
-                            {
-                                splice(list, i, 1);
-                                break;
-                            }
+                            splice(list, i, 1);
+                            break;
                         }
                     }
+                    if (list.length === 0)
+                        delete this._listeners[type];
                 }
             }
         },
