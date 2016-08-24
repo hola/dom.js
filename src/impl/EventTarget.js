@@ -52,7 +52,10 @@ defineLazyProperty(impl, "EventTarget", function() {
                             if (list.length === 1)
                                 delete this._listeners[type];
                             else
+                            {
                                 splice(list, i, 1);
+                                break;
+                            }
                         }
                     }
                 }
@@ -125,7 +128,7 @@ defineLazyProperty(impl, "EventTarget", function() {
                 var list = target._listeners && target._listeners[type];
                 if (!list) return;
 
-                for(var i = 0, n = list.length; i < n; i++) {
+                for(var i = 0; i < list.length; i++) {
                     if (event._stopImmediatePropagation) return;
                     var l = list[i];
                     if ((phase === CAPTURING_PHASE && !l.capture) ||
